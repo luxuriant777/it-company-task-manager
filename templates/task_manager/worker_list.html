@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+    <h1>
+      Worker List
+      <span class="float-right">
+        <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary link-to-page">
+          <i class="bi bi-person-plus"></i> Create
+        </a>
+      </span>
+    </h1>
+  {% block search_form %}
+  {% include "includes/search_form.html" %}
+  {% endblock %}
+    <br>
+    {% if worker_list %}
+    <table class="table table-hover">
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Position</th>
+    </tr>
+    {% for worker in worker_list %}
+      <tr onclick="window.location='{% url 'task_manager:worker-detail' pk=worker.id %}'">
+        <td>{{ worker.id }}</td>
+        <td>{{ worker.username }} {% if user == worker %} (Me){% endif %}</td>
+        <td>{{ worker.first_name }}</td>
+        <td>{{ worker.last_name }}</td>
+        <td>{{ worker.position }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>There are no workers.</p>
+{% endif %}
+{% endblock %}

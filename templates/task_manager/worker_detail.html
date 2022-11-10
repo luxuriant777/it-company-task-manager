@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>
+    Username: {{ worker.username }}
+    <span class="float-right">
+      <a href="{% url 'task_manager:worker-delete' pk=worker.id %}" class="btn btn-danger link-to-page ">
+        Delete
+      </a>
+      <a href="{% url 'task_manager:worker-update' pk=worker.id %}" class="btn btn-secondary link-to-page">
+        Update
+      </a>
+    </span>
+  </h1>
+  <p><strong>First name:</strong> {{ worker.first_name }}</p>
+  <p><strong>Last name:</strong> {{ worker.last_name }}</p>
+  <p><strong>Position:</strong> {{ worker.position }}</p>
+  <p><strong>Is staff:</strong> {{ worker.is_staff }}</p>
+  <div class="ml-3">
+    <h4>Tasks</h4>
+    {% for task in worker.tasks.all %}
+      {% if task.priority == 1 %}
+        <a href="{% url 'task_manager:task-detail' pk=task.id %}" class="list-group-item list-group-item-action list-group-item-danger">
+        <span><strong>Name:</strong> {{ task.name }}</span>
+        <span><strong>Priority:</strong> {{ task.priority }}</span>
+        <p class="text-muted"><strong>Description:</strong> {{task.description}}</p>
+      </a>
+      {% elif task.priority == 2 %}
+        <a href="{% url 'task_manager:task-detail' pk=task.id %}" class="list-group-item list-group-item-action list-group-item-warning">
+        <span><strong>Name:</strong> {{ task.name }}</span>
+        <span><strong>Priority:</strong> {{ task.priority }}</span>
+        <p class="text-muted"><strong>Description:</strong> {{task.description}}</p>
+      </a>
+      {% elif task.priority == 3 %}
+        <a href="{% url 'task_manager:task-detail' pk=task.id %}" class="list-group-item list-group-item-action list-group-item-info">
+        <span><strong>Name:</strong> {{ task.name }}</span>
+        <span><strong>Priority:</strong> {{ task.priority }}</span>
+        <p class="text-muted"><strong>Description:</strong> {{task.description}}</p>
+      </a>
+      {% elif task.priority == 4 %}
+        <a href="{% url 'task_manager:task-detail' pk=task.id %}" class="list-group-item list-group-item-action list-group-item-secondary">
+        <span><strong>Name:</strong> {{ task.name }}</span>
+        <span><strong>Priority:</strong> {{ task.priority }}</span>
+        <p class="text-muted"><strong>Description:</strong> {{task.description}}</p>
+      </a>
+      {% endif %}
+    {% empty %}
+      <p>There is no tasks!</p>
+    {% endfor %}
+  </div>
+{% endblock %}
