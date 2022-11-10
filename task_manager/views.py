@@ -115,10 +115,14 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
 
 class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:worker-list")
 
 
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
+    fields = "__all__"
+    success_url = reverse_lazy("task_manager:worker-list")
 
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -129,9 +133,7 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 @login_required
 def toggle_task_assign(request, pk):
     worker = Worker.objects.get(id=request.user.id)
-    if (
-        Task.objects.get(id=pk) in worker.tasks.all()
-    ):
+    if Task.objects.get(id=pk) in worker.tasks.all():
         worker.tasks.remove(pk)
     else:
         worker.tasks.add(pk)

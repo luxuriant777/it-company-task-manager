@@ -7,12 +7,7 @@
     <div class="card mb-4">
       <div class="card-header pb-0">
         <h6>Worker List</h6>
-        <span class="float-right">
-          <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary link-to-page">
-            <i class="bi bi-person-plus"></i>
-            Create
-          </a>
-        </span>
+        <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary link-to-page">Create</a>
         {% block search_form %}
         {% include "includes/search_form.html" %}
         {% endblock %}
@@ -20,7 +15,7 @@
       {% if worker_list %}
       <div class="card-body px-0 pt-0 pb-2">
         <div class="table-responsive p-0">
-          <table class="table align-items-center mb-0">
+          <table class="table align-items-center mb-0 table-hover">
             <thead>
               <tr>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
@@ -28,7 +23,7 @@
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First name</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Last name</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Position</th>
-                </tr>
+              </tr>
             </thead>
             <tbody>
             {% for worker in worker_list %}

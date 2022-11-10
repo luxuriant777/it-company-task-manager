@@ -1,62 +1,75 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% block content %}
-    <h1>
-      Task List
-      <a href="{% url "task_manager:task-create" %}" class="btn btn-primary link-to-page float-left">
-        Create
-      </a>
-    </h1>
-  {% block search_form %}
-  {% include "includes/search_form.html" %}
-  {% endblock %}
-    <br>
-    {% if task_list %}
-    <table class="table table-hover">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Deadline</th>
-      <th>Task type</th>
-      <th>Priority</th>
-    </tr>
-    {% for task in task_list %}
-      {% if task.priority == 1 %}
-        <tr class="table-danger" onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
-          <td>{{ task.id }}</td>
-          <td>{{ task.name }}</td>
-          <td>{{ task.deadline | date:"d M Y" }}</td>
-          <td>{{ task.task_type }}</td>
-          <td>{{ task.get_priority_display }}</td>
-        </tr>
-      {% elif task.priority == 2 %}
-        <tr class="table-warning" onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
-          <td>{{ task.id }}</td>
-          <td>{{ task.name }}</td>
-          <td>{{ task.deadline | date:"d M Y" }}</td>
-          <td>{{ task.task_type }}</td>
-          <td>{{ task.get_priority_display }}</td>
-        </tr>
-      {% elif  task.priority == 3 %}
-        <tr class="table-info" onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
-          <td>{{ task.id }}</td>
-          <td>{{ task.name }}</td>
-          <td>{{ task.deadline | date:"d M Y" }}</td>
-          <td>{{ task.task_type }}</td>
-          <td>{{ task.get_priority_display }}</td>
-        </tr>
-      {% elif  task.priority == 4 %}
-        <tr class="table-secondary" onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
-          <td>{{ task.id }}</td>
-          <td>{{ task.name }}</td>
-          <td>{{ task.deadline | date:"d M Y" }}</td>
-          <td>{{ task.task_type }}</td>
-          <td>{{ task.get_priority_display }}</td>
-        </tr>
-    {% endif %}
-    {% endfor %}
-  </table>
-{% else %}
-  <p>There are no tasks.</p>
-{% endif %}
+<div class="container-fluid py-4">
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header pb-0">
+        <h6>Task List</h6>
+        <a href="{% url "task_manager:task-create" %}" class="btn btn-primary link-to-page">Create</a>
+        {% block search_form %}
+        {% include "includes/search_form.html" %}
+        {% endblock %}
+      </div>
+      {% if task_list %}
+      <div class="card-body px-0 pt-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0 table-hover">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deadline</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task type</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Priority</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for task in task_list %}
+            {% if task.priority == 1 %}
+              <tr onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.deadline | date:"d M Y" }}</td>
+                <td>{{ task.task_type }}</td>
+                <td>{{ task.get_priority_display }}</td>
+              </tr>
+            {% elif task.priority == 2 %}
+              <tr onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.deadline | date:"d M Y" }}</td>
+                <td>{{ task.task_type }}</td>
+                <td>{{ task.get_priority_display }}</td>
+              </tr>
+            {% elif  task.priority == 3 %}
+              <tr onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.deadline | date:"d M Y" }}</td>
+                <td>{{ task.task_type }}</td>
+                <td>{{ task.get_priority_display }}</td>
+              </tr>
+            {% elif  task.priority == 4 %}
+              <tr onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.deadline | date:"d M Y" }}</td>
+                <td>{{ task.task_type }}</td>
+                <td>{{ task.get_priority_display }}</td>
+              </tr>
+          {% endif %}
+          {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+        <p>There are no tasks.</p>
+        {% endif %}
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
 {% endblock %}
