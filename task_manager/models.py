@@ -14,6 +14,7 @@ class Position(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
 class Worker(AbstractUser):
     class Meta:
         verbose_name = "worker"
