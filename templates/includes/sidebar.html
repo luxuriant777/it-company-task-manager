@@ -4,9 +4,9 @@
       <a class="list-group-item list-group-item-action list-group-item-dark"
        href="{% url 'task_manager:worker-detail' pk=user.id %}">{{ user.get_username }}</a>
     </li>
-    <a class="list-group-item list-group-item-action list-group-item-warning" href="">Logout</a>
+    <a class="list-group-item list-group-item-action list-group-item-warning" href="{% url 'logout' %}">Logout</a>
   {% else %}
-    <a class="list-group-item list-group-item-action list-group-item-success" href="">Login</a>
+    <a class="list-group-item list-group-item-action list-group-item-success" href="{% url 'login' %}">Login</a>
   {% endif %}
   <hr>
   <a class="list-group-item list-group-item-action list-group-item-dark" href="{% url 'task_manager:index' %}">Home</a>
