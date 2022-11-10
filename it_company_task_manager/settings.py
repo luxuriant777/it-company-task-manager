@@ -94,6 +94,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LOGIN_REDIRECT_URL = "/"
 
+LOGOUT_REDIRECT_URL = "/"
+
 AUTH_USER_MODEL = 'task_manager.Worker'
 
 LANGUAGE_CODE = "en-us"

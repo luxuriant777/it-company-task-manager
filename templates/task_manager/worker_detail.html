@@ -21,25 +21,25 @@
       {% if task.priority == 1 %}
         <a href="{% url 'task_manager:task-detail' pk=task.id %}" class="list-group-item list-group-item-action list-group-item-danger">
         <span><strong>Name:</strong> {{ task.name }}</span>
-        <span><strong>Priority:</strong> {{ task.priority }}</span>
+        <span><strong>Priority:</strong> {{ task.get_priority_display }}</span>
         <p class="text-muted"><strong>Description:</strong> {{task.description}}</p>
       </a>
       {% elif task.priority == 2 %}
         <a href="{% url 'task_manager:task-detail' pk=task.id %}" class="list-group-item list-group-item-action list-group-item-warning">
         <span><strong>Name:</strong> {{ task.name }}</span>
-        <span><strong>Priority:</strong> {{ task.priority }}</span>
+        <span><strong>Priority:</strong> {{ task.get_priority_display }}</span>
         <p class="text-muted"><strong>Description:</strong> {{task.description}}</p>
       </a>
       {% elif task.priority == 3 %}
         <a href="{% url 'task_manager:task-detail' pk=task.id %}" class="list-group-item list-group-item-action list-group-item-info">
         <span><strong>Name:</strong> {{ task.name }}</span>
-        <span><strong>Priority:</strong> {{ task.priority }}</span>
+        <span><strong>Priority:</strong> {{ task.get_priority_display }}</span>
         <p class="text-muted"><strong>Description:</strong> {{task.description}}</p>
       </a>
       {% elif task.priority == 4 %}
         <a href="{% url 'task_manager:task-detail' pk=task.id %}" class="list-group-item list-group-item-action list-group-item-secondary">
         <span><strong>Name:</strong> {{ task.name }}</span>
-        <span><strong>Priority:</strong> {{ task.priority }}</span>
+        <span><strong>Priority:</strong> {{ task.get_priority_display }}</span>
         <p class="text-muted"><strong>Description:</strong> {{task.description}}</p>
       </a>
       {% endif %}
