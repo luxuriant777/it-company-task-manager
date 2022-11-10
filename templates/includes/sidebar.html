@@ -9,6 +9,6 @@
   {% endif %}
   <hr>
   <a class="list-group-item list-group-item-action list-group-item-dark" href="{% url 'task_manager:index' %}">Home</a>
-  <a class="list-group-item list-group-item-action list-group-item-secondary" href="">All tasks</a>
+  <a class="list-group-item list-group-item-action list-group-item-secondary" href="{% url 'task_manager:task-list' %}">All tasks</a>
   <a class="list-group-item list-group-item-action list-group-item-secondary" href="">All workers</a>
 </ul>
