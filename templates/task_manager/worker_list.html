@@ -1,38 +1,54 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% block content %}
-    <h1>
-      Worker List
-      <span class="float-right">
-        <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary link-to-page">
-          <i class="bi bi-person-plus"></i> Create
-        </a>
-      </span>
-    </h1>
-  {% block search_form %}
-  {% include "includes/search_form.html" %}
-  {% endblock %}
-    <br>
-    {% if worker_list %}
-    <table class="table table-hover">
-    <tr>
-      <th>ID</th>
-      <th>Username</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Position</th>
-    </tr>
-    {% for worker in worker_list %}
-      <tr onclick="window.location='{% url 'task_manager:worker-detail' pk=worker.id %}'">
-        <td>{{ worker.id }}</td>
-        <td>{{ worker.username }} {% if user == worker %} (Me){% endif %}</td>
-        <td>{{ worker.first_name }}</td>
-        <td>{{ worker.last_name }}</td>
-        <td>{{ worker.position }}</td>
-      </tr>
-    {% endfor %}
-  </table>
-{% else %}
-  <p>There are no workers.</p>
-{% endif %}
+<div class="container-fluid py-4">
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header pb-0">
+        <h6>Worker List</h6>
+        <span class="float-right">
+          <a href="{% url 'task_manager:worker-create' %}" class="btn btn-primary link-to-page">
+            <i class="bi bi-person-plus"></i>
+            Create
+          </a>
+        </span>
+        {% block search_form %}
+        {% include "includes/search_form.html" %}
+        {% endblock %}
+      </div>
+      {% if worker_list %}
+      <div class="card-body px-0 pt-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Username</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First name</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Last name</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Position</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for worker in worker_list %}
+              <tr onclick="window.location='{% url 'task_manager:worker-detail' pk=worker.id %}'">
+                <td>{{ worker.id }}</td>
+                <td>{{ worker.username }} {% if user == worker %} (Me){% endif %}</td>
+                <td>{{ worker.first_name }}</td>
+                <td>{{ worker.last_name }}</td>
+                <td>{{ worker.position }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <p>There are no workers.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
 {% endblock %}
