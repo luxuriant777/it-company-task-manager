@@ -3,7 +3,7 @@
 {% block content %}
     <h1>
       Task List
-      <a href="" class="btn btn-primary link-to-page float-right">
+      <a href="{% url "task_manager:task-create" %}" class="btn btn-primary link-to-page float-left">
         Create
       </a>
     </h1>
@@ -21,7 +21,7 @@
     </tr>
     {% for task in task_list %}
       {% if task.priority == 1 %}
-        <tr class="table-danger" onclick="window.location='{{ task.get_absolute_url }}'">
+        <tr class="table-danger" onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
           <td>{{ task.id }}</td>
           <td>{{ task.name }}</td>
           <td>{{ task.deadline | date:"d M Y" }}</td>
@@ -29,7 +29,7 @@
           <td>{{ task.get_priority_display }}</td>
         </tr>
       {% elif task.priority == 2 %}
-        <tr class="table-warning" onclick="window.location='{{ task.get_absolute_url }}'">
+        <tr class="table-warning" onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
           <td>{{ task.id }}</td>
           <td>{{ task.name }}</td>
           <td>{{ task.deadline | date:"d M Y" }}</td>
@@ -37,7 +37,7 @@
           <td>{{ task.get_priority_display }}</td>
         </tr>
       {% elif  task.priority == 3 %}
-        <tr class="table-info" onclick="window.location='{{ task.get_absolute_url }}'">
+        <tr class="table-info" onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
           <td>{{ task.id }}</td>
           <td>{{ task.name }}</td>
           <td>{{ task.deadline | date:"d M Y" }}</td>
@@ -45,7 +45,7 @@
           <td>{{ task.get_priority_display }}</td>
         </tr>
       {% elif  task.priority == 4 %}
-        <tr class="table-secondary" onclick="window.location='{{ task.get_absolute_url }}'">
+        <tr class="table-secondary" onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
           <td>{{ task.id }}</td>
           <td>{{ task.name }}</td>
           <td>{{ task.deadline | date:"d M Y" }}</td>

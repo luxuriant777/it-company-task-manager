@@ -5,7 +5,7 @@
     <a href="{% url 'task_manager:task-delete' pk=task.id %}" class="btn btn-danger link-to-page">
       Delete
     </a>
-    <a href="{% url 'task_manager:car-update' pk=task.id %}" class="btn btn-secondary link-to-page">
+    <a href="{% url 'task_manager:task-update' pk=task.id %}" class="btn btn-secondary link-to-page">
       Update
     </a>
   </h1>
@@ -17,13 +17,13 @@
   <p>Description: <br>
     {{ task.description }}</p>
   <h1>
-    Workers
+    Assignees
     {% if task in user.tasks.all %}
-      <a href="{% url 'task:toggle-task-assign' pk=task.id %}" class="btn btn-danger link-to-page">
+      <a href="{% url 'task_manager:toggle-task-assign' pk=task.id %}" class="btn btn-danger link-to-page">
         Exclude me from this task
       </a>
     {% else %}
-      <a href="{% url 'task:toggle-task-assign' pk=task.id %}" class="btn btn-success link-to-page">
+      <a href="{% url 'task_manager:toggle-task-assign' pk=task.id %}" class="btn btn-success link-to-page">
         Assign me to this task
       </a>
     {% endif %}
@@ -31,7 +31,7 @@
   <hr>
   <ul>
     {% for worker in task.assignees.all %}
-      <a href="{% url 'task:worker-detail' pk=worker.id %}" class="list-group-item list-group-item-action list-group-item-secondary">{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</a>
+      <a href="{% url 'task_manager:worker-detail' pk=worker.id %}" class="list-group-item list-group-item-action list-group-item-secondary">{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</a>
     {% endfor %}
   </ul>
 {% endblock %}
