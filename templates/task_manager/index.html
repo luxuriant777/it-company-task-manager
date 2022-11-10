@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Task Manager for IT-company</h1>
+  <h2>Dynamic content</h2>
+  <p>Current state:</p>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Workers:</strong> {{ num_workers }}</li>
+    <li class="list-group-item"><strong>Tasks:</strong> {{ num_tasks }}</li>
+  </ul>
+  <hr>
+  <p>You have visited this page
+    {{ num_visits }} time{{ num_visits|pluralize }}.
+  </p>
+{% endblock %}

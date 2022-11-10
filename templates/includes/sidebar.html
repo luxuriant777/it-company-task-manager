@@ -1,0 +1,14 @@
+<ul class="sidebar-nav list-group">
+  {% if user.is_authenticated %}
+    <li class="list-group-item list-group-item-action list-group-item-dark">
+      User: <a href="{{ user.get_absolute_url }}">{{ user.get_username }}</a>
+    </li>
+    <a class="list-group-item list-group-item-action list-group-item-warning" href="">Logout</a>
+  {% else %}
+    <a class="list-group-item list-group-item-action list-group-item-success" href="">Login</a>
+  {% endif %}
+  <hr>
+  <a class="list-group-item list-group-item-action list-group-item-dark" href="{% url 'task_manager:index' %}">Home</a>
+  <a class="list-group-item list-group-item-action list-group-item-secondary" href="">All tasks</a>
+  <a class="list-group-item list-group-item-action list-group-item-secondary" href="">All workers</a>
+</ul>
