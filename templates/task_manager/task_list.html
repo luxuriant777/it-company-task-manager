@@ -27,7 +27,6 @@
             </thead>
             <tbody>
             {% for task in task_list %}
-            {% if task.priority == 1 %}
               <tr onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
                 <td>{{ task.id }}</td>
                 <td>{{ task.name }}</td>
@@ -35,32 +34,7 @@
                 <td>{{ task.task_type }}</td>
                 <td>{{ task.get_priority_display }}</td>
               </tr>
-            {% elif task.priority == 2 %}
-              <tr onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
-                <td>{{ task.id }}</td>
-                <td>{{ task.name }}</td>
-                <td>{{ task.deadline | date:"d M Y" }}</td>
-                <td>{{ task.task_type }}</td>
-                <td>{{ task.get_priority_display }}</td>
-              </tr>
-            {% elif  task.priority == 3 %}
-              <tr onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
-                <td>{{ task.id }}</td>
-                <td>{{ task.name }}</td>
-                <td>{{ task.deadline | date:"d M Y" }}</td>
-                <td>{{ task.task_type }}</td>
-                <td>{{ task.get_priority_display }}</td>
-              </tr>
-            {% elif  task.priority == 4 %}
-              <tr onclick="window.location='{% url "task_manager:task-detail" pk=task.id%}'">
-                <td>{{ task.id }}</td>
-                <td>{{ task.name }}</td>
-                <td>{{ task.deadline | date:"d M Y" }}</td>
-                <td>{{ task.task_type }}</td>
-                <td>{{ task.get_priority_display }}</td>
-              </tr>
-          {% endif %}
-          {% endfor %}
+            {% endfor %}
             </tbody>
           </table>
         {% else %}
