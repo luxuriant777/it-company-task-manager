@@ -15,6 +15,7 @@ class Position(models.Model):
     def __str__(self) -> str:
         return self.name
 
+
 class Worker(AbstractUser):
     class Meta:
         verbose_name = "worker"
@@ -24,6 +25,7 @@ class Worker(AbstractUser):
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
+
 
 class Task(models.Model):
     class Meta:
@@ -39,10 +41,7 @@ class Task(models.Model):
         (3, "Medium"),
         (4, "Low"),
     ]
-    priority = models.IntegerField(
-        choices=PRIORITY_CHOICES,
-        default="low"
-    )
+    priority = models.IntegerField(choices=PRIORITY_CHOICES, default="low")
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
     assignees = models.ManyToManyField(Worker, related_name="tasks")
 
