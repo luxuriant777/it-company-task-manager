@@ -25,6 +25,7 @@ def index(request):
 
     return render(request, "task_manager/index.html", context=context)
 
+
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     context_object_name = "task_list"
@@ -39,10 +40,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         is_completed = self.request.GET.get("is_completed", "")
 
         context["search_form"] = TaskSearchForm(
-            initial={
-                "search": search,
-                "is_completed": is_completed
-                }
+            initial={"search": search, "is_completed": is_completed}
         )
 
         return context
@@ -54,11 +52,12 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
             if form.cleaned_data["is_completed"]:
                 return self.queryset.filter(
                     name__icontains=form.cleaned_data["search"],
-                    is_completed=True
+                    is_completed=True,
                 )
             return self.queryset.filter(
                 name__icontains=form.cleaned_data["search"]
             )
+
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
@@ -84,6 +83,7 @@ class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("task_manager:task-list")
 
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     queryset = Worker.objects.all()
@@ -102,9 +102,9 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
         if form.is_valid():
             return self.queryset.filter(
-                Q(first_name__icontains=form.cleaned_data["search"]) |
-                Q(first_name__icontains=form.cleaned_data["search"]) |
-                Q(username__icontains=form.cleaned_data["search"])
+                Q(first_name__icontains=form.cleaned_data["search"])
+                | Q(first_name__icontains=form.cleaned_data["search"])
+                | Q(username__icontains=form.cleaned_data["search"])
             )
 
 
@@ -137,4 +137,6 @@ def toggle_task_assign(request, pk):
         worker.tasks.remove(pk)
     else:
         worker.tasks.add(pk)
-    return HttpResponseRedirect(reverse_lazy("task_manager:task-detail", args=[pk]))
+    return HttpResponseRedirect(
+        reverse_lazy("task_manager:task-detail", args=[pk])
+    )
