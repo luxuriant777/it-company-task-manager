@@ -60,7 +60,7 @@ class ModelTests(TestCase):
     def test_task_str(self):
         name = ("Very Important Task",)
         description = "Correct logo css"
-        deadline = datetime.datetime.now()
+        deadline = datetime.datetime.now().date()
         is_completed = False
         priority = 1
         task_type = TaskType.objects.create(name="Bug")
