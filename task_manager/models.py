@@ -20,6 +20,7 @@ class Worker(AbstractUser):
     class Meta:
         verbose_name = "worker"
         verbose_name_plural = "workers"
+        ordering = ['first_name']
 
     position = models.ForeignKey(Position, on_delete=models.CASCADE, null=True)
 
