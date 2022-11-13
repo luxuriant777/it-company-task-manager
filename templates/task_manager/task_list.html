@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header pb-0">
+          <h6>Task List</h6>
+          <a href="{% url 'task_manager:task-create' %}" class="btn btn-primary link-to-page">Create</a>
+          {% block search_form %}
+          {% include "includes/search_form.html" %}
+          {% endblock %}
+          {% if task_list %}
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0 table-hover">
+                <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Deadline</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task type</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Priority</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for task in task_list %}
+                <tr onclick="window.location='{% url 'task_manager:task-detail' pk=task.id %}'">
+                <td>{{ task.id }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.deadline | date:"d M Y" }}</td>
+                <td>{{ task.task_type }}</td>
+                <td>{{ task.get_priority_display }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+              {% else %}
+              <p>There are no tasks.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
