@@ -21,7 +21,9 @@ CSRF_COOKIE_SECURE = True
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
-DEBUG = os.environ["DJANGO_DEBUG"]
+DEBUG = False
+
+# DEBUG = os.environ["DJANGO_DEBUG"]
 
 STATIC_URL = "static/"
 
@@ -115,7 +117,5 @@ TIME_ZONE = "Europe/Kiev"
 USE_I18N = True
 
 USE_TZ = True
-
-STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
