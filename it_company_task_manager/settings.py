@@ -21,7 +21,7 @@ CSRF_COOKIE_SECURE = True
 
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
-DEBUG = os.environ.get("DJANGO_DEBUG", "") != False
+DEBUG = os.environ["DJANGO_DEBUG"]
 
 STATIC_URL = "static/"
 
