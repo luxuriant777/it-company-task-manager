@@ -29,7 +29,7 @@ STATICFILES_DIRS = (BASE_DIR / "static",)
 
 STATIC_ROOT = BASE_DIR / "staticfiles/"
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1", "task-manager-lv19.onrender.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
