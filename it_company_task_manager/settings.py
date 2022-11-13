@@ -19,7 +19,7 @@ SESSION_COOKIE_SECURE = True
 
 CSRF_COOKIE_SECURE = True
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-=1^-&hklti8f_8(s2^8od3l3hjw&k$%e#58ao)&)-nr_s0r8at")
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != False
 
